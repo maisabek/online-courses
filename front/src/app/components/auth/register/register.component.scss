@@ -1,0 +1,65 @@
+@import '../../../shared/scss/index.scss';
+.register{
+  margin: 6% 16%;
+    position: relative;
+    width: 78%;
+    h5{
+      color: $light_blue;
+      font-family: cursive;
+      text-align: center;
+      font-size: $middle-font-size;
+    }
+    span{
+      color: $white;
+      font-size: $middle-font-size;
+    }
+    .register_form{
+     background: -webkit-linear-gradient(right,$white,$white);
+     border-top-right-radius: 21px;
+     border-bottom-right-radius: 21px;
+
+    }
+  .content{
+   input[type="submit"]{
+     background: $light_blue;
+     color: $white;
+   }
+   label{
+     color: $dark_blue;
+     width: 40%;
+   }
+  }
+  p{
+    color: $dark_blue;
+    a{
+      text-decoration: none;
+      color: $dark_blue;
+    }
+  }
+  .register_img{
+    background-image: url(../../../../assets/Images/05.jpg);
+    display: inline-block;
+    position: relative;
+    border-radius: 21px;
+    background-position: center;
+    .cover {
+       background-color: rgba(115, 141, 175, 0.5);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 21px;
+
+    }
+    &:after {
+      background: url(../../../../assets/Images/login_bg.png);
+      width: 150px;
+      height: 100%;
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -2px;
+    }
+}
+}
+
+

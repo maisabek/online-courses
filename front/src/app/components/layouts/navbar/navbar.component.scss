@@ -1,0 +1,27 @@
+@import '../../../shared/scss/index.scss';
+#navbar{
+  border-bottom: 1px dotted $dark_yellow;
+    li{
+      list-style-type: none;
+      margin: 3px 2%;
+      a{
+        color:$dark_yellow;
+        cursor: pointer;
+        button{
+          background: transparent;
+          color: $light_blue;
+          border: 1px solid #698aa7;
+          border-radius: 20px;
+          width: 100%;
+          margin: 7% 11px -6px;
+          transition: all 0.3s ease;
+          &:hover{
+            border: 1px solid $dark_yellow;
+            color: $dark_yellow;
+            background: transparent;
+          }
+        }
+      }
+  }
+  
+}

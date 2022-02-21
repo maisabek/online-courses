@@ -1,0 +1,216 @@
+<section id="build" class="build mt-5">
+<div class="container">
+<div class="row g-0">
+  <div class="col-md-12 build_form">
+    <form method="post" [formGroup]="CourseForm" (ngSubmit)="buildCourse()">
+      <div class="form-wrapper">
+
+      <div class="form-group">
+        <label for="" class="">Course Name</label>
+        <input type="text" class="form-control" formControlName="Course_Name">
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="" class="">Course Descrption</label>
+        <textarea type="text" class="form-control mt-1" formControlName="Course_Description"></textarea>
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="" class="">Course Category</label>
+        <ngx-select-dropdown (change)="selectionChanged($event)" formControlName="Course_Category" [multiple]="true" [options]="dropdownOptions"></ngx-select-dropdown>
+      </div>
+
+      <div class="form-group mt-4 d-flex">
+        <div class="w-50">
+        <label for="" class="">Course Start</label>
+        <input type="datetime-local" class="form-control mt-1" formControlName="Course_Start">
+        </div>
+        <div class="mx-2 w-50">
+          <label for="" class="">Course End</label>
+          <input type="datetime-local" class="form-control mt-1" formControlName="Course_End">
+        </div>
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="" class="">Course Image</label>
+        <input type="file" class="form-control mt-1" (change)="ImageEvent($event)" formControlName="Course_Image">
+      </div>
+
+      <div class="form-group mt-4 Instructors_Container">
+        <label for="">Other Instructor</label>
+        <mat-form-field class="example-chip-list w-100">
+          <mat-chip-list #chipList aria-label="category selection">
+            <mat-chip
+              *ngFor="let category of selectedCategories"
+              (removed)="remove(category)">
+              {{category}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              #categoryInput
+              formControlName="Course_Instructor"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let category of filteredcategories | async" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group mt-4" formArrayName="Course_Videos">
+        <label>
+          Course Videos [ Add Multi Videos ]
+          <a class="mx-2 p-1" data-toggle="tooltip" title="Add Video" (click)="addVideo()">
+            Add <i class="fa fa-plus" aria-hidden="true"></i>
+          </a>
+        </label>
+        <ng-container class="border border-1 mt-2 mb-2 p-2" *ngFor="let video of getVideos().controls;let VideoIndex=index">
+        <div [formGroupName]="VideoIndex" class="d-flex mt-3">
+        <input type="file" class="form-control" (change)="VideoEvent($event)" formControlName="video">
+        <button class="btn float-end" (click)="removeVideo(VideoIndex)">
+          <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+        </button>
+        </div>
+        </ng-container>
+      </div>
+
+      <div>
+        <!-- <uppy-dashboard [uppy]='uppy'></uppy-dashboard> -->
+        <!-- <ng-uppy [config]="settings" (onFileUpload)="onFileUpload($event)"></ng-uppy> -->
+      </div>
+
+      </div>
+      <div class="form-setting mx-1 p-3">
+        <h5 class="mb-5">Setting</h5>
+        <div class="accordion">
+          <cdk-accordion class="example-accordion">
+
+            <cdk-accordion-item
+            #accordionItem3="cdkAccordionItem"
+            class="example-accordion-item mt-4"
+            role="button"
+            tabindex="0"
+            [attr.id]="'accordion-header-' + 3"
+            [attr.aria-expanded]="accordionItem3.expanded"
+            [attr.aria-controls]="'accordion-body-' + 3">
+            <div class="example-accordion-item-header" (click)="accordionItem3.toggle()">
+              Grading Policy
+              <span class="example-accordion-item-description">
+                <ng-container *ngIf="accordionItem3.expanded;then close else open"></ng-container>
+                <ng-template #close>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </ng-template>
+                <ng-template #open>
+                  <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </ng-template>
+              </span>
+            </div>
+            <div class="example-accordion-item-body" role="region"
+              [style.display]="accordionItem3.expanded ? '' : 'none'"
+              [attr.id]="'accordion-body-' + 3"
+              [attr.aria-labelledby]="'accordion-header-' + 3">
+              <div class="form-group mb-4 w-100">
+                <label class="form-label" for="grade">Passing Grade Percentage</label>
+                <input class="form-control w-100" type="number" id="grade" formControlName="Course_Grade" />
+              </div>
+            </div>
+            </cdk-accordion-item>
+
+            <cdk-accordion-item
+              #accordionItem1="cdkAccordionItem"
+              class="example-accordion-item mt-4"
+              role="button"
+              tabindex="0"
+              [attr.id]="'accordion-header-' + 1"
+              [attr.aria-expanded]="accordionItem1.expanded"
+              [attr.aria-controls]="'accordion-body-' + 1">
+              <div class="example-accordion-item-header" (click)="accordionItem1.toggle()">
+                Certificate
+                <span class="example-accordion-item-description">
+                  <ng-container *ngIf="accordionItem1.expanded;then close else open"></ng-container>
+                  <ng-template #close>
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                  </ng-template>
+                  <ng-template #open>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                  </ng-template>
+                </span>
+              </div>
+              <div class="example-accordion-item-body" role="region"
+                [style.display]="accordionItem1.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + 1"
+                [attr.aria-labelledby]="'accordion-header-' + 1">
+                <div class="d-flex mt-3 mb-3">
+                  <div>
+                    <label class="form-check-label mt-1 mx-1" for="Certificate_Check">Has Certificate</label>
+                  </div>
+                  <div class="form-check form-switch mb-4 mx-5">
+                    <input class="form-check-input" type="checkbox" role="switch" id="Certificate_Check" />
+                  </div>
+                </div>
+                <div class="d-none" id="Certificate_Create">
+                <button class="btn">Create Certificates</button>
+                </div>
+              </div>
+            </cdk-accordion-item>
+
+            <cdk-accordion-item
+              #accordionItem2="cdkAccordionItem"
+              class="example-accordion-item mt-4"
+              role="button"
+              tabindex="0"
+              [attr.id]="'accordion-header-' + 2"
+              [attr.aria-expanded]="accordionItem2.expanded"
+              [attr.aria-controls]="'accordion-body-' + 2">
+              <div class="example-accordion-item-header" (click)="accordionItem2.toggle()">
+                Survey
+                <span class="example-accordion-item-description">
+                  <ng-container *ngIf="accordionItem2.expanded;then close else open"></ng-container>
+                  <ng-template #close>
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                  </ng-template>
+                  <ng-template #open>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                  </ng-template>
+                </span>
+              </div>
+              <div class="example-accordion-item-body" role="region"
+                [style.display]="accordionItem2.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + 2"
+                [attr.aria-labelledby]="'accordion-header-' + 2">
+                <div class="d-flex mt-3 mb-3">
+                  <div>
+                    <label class="form-check-label mt-1 mx-1" for="Survey_Check">Has Survey</label>
+                  </div>
+                  <div class="form-check form-switch mb-4 mx-5">
+                    <input class="form-check-input" type="checkbox" role="switch" id="Survey_Check" />
+                  </div>
+                </div>
+                <div class="d-none" id="Survey_Create">
+                <button class="btn">Create Survey</button>
+                </div>
+              </div>
+            </cdk-accordion-item>
+
+
+          </cdk-accordion>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="w-50 float-end mt-1">
+       <input type="submit" value="save" class="btn  float-end mb-5">
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+
+</div>
+</div>
+</section>

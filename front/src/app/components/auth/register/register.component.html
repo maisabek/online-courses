@@ -1,0 +1,50 @@
+<section id="register" class="register">
+<div class="container">
+<div class="row g-0">
+  <div class="col-md-5 register_img">
+    <div class="cover"></div>
+    <!-- <img src="assets/Images/05.jpg" class="w-100 h-100" alt=""> -->
+  </div>
+<div class="col-md-5 p-5 register_form">
+  <div class="content">
+<form [formGroup]="data" method="post" (ngSubmit)="submitData()">
+   <div>
+     <h5 class="mb-5">Register Now</h5>
+   </div>
+   <!-- <div class="form-check form-switch mb-4">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+    <label class="form-check-label" for="flexSwitchCheckDefault">Instructor</label>
+  </div> -->
+  <div class="form-group d-flex">
+    <!-- <label for="name" class="">Name<span></span></label> -->
+    <input type="name" name="name" id="name" placeholder="Enter Your Name" class="form-control" formControlName="name">
+  </div>
+  <div class="form-group  d-flex mt-3">
+    <!-- <label for="email" class="">Email<span></span></label> -->
+    <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" formControlName="email">
+  </div>
+  <div class="form-group d-flex mt-3">
+    <!-- <label for="password" class="">Password<span></span></label> -->
+    <input type="password" name="password" id="password" class="form-control" placeholder="Enter Your password" formControlName="password">
+  </div>
+  <div class="form-group d-flex mt-3">
+    <!-- <label for="confirmPassword" class="">Confirm Password<span></span></label> -->
+    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+  </div>
+  <div class="form-group d-flex mt-3">
+    <!-- <label for="role" class="">Role<span></span></label> -->
+    <select name="role" id="role" formControlName="role" placeholder="Choose Your Role" class="p-1 form-control">
+      <option value="student">Student</option>
+      <option value="instructor">Instructor</option>
+    </select>
+  </div>
+
+<input type="submit"  value="Register" class="btn mt-4 w-100">
+<p class="mt-1">You Have an Account ? <a routerLink="/login">Login</a></p>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+</section>

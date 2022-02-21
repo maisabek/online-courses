@@ -1,0 +1,132 @@
+@import '../../../shared/scss/index.scss';
+.build{
+  .build_form{
+  input[type="submit"]{
+    background: $dark_yellow;
+    width:10%;
+  }
+  }
+  .example-form-field {
+    margin: 0 8px 16px 0;
+  }
+  .form-wrapper{
+    background: $white;
+    float: left;
+    width: 65%;
+    padding: 36px;
+    border-radius: 4px;
+
+    label{
+      font-family: cursive;
+      color: $dark_blue;
+    }
+    a{
+      cursor: pointer;
+      color: $dark_blue;
+    }
+    .Instructors_Container{
+    overflow: hidden;
+    height: 77px;
+
+    }
+  }
+  .form-setting{
+    float: right;
+    width: 30%;
+    border-radius: 4px;
+    background: $white;
+   min-height: 630px;
+     h5{
+       font-size: 17px;
+       text-align: center;
+       color: $white;
+       background: $light_blue;
+       margin: 0px 0px 20px;
+       padding: 13px;
+       width: calc(100% + 68px);
+       position: relative;
+       left: -34px;
+       &::before{
+         content: '';
+         position: absolute;
+         border-width: 9px;
+         border-color: $light_blue $light_blue transparent transparent;
+         border-style: solid;
+         left: 0;
+         bottom: -18px;
+
+       }
+       &::after{
+        content: '';
+        position: absolute;
+        border-width: 9px;
+        border-color:  $light_blue transparent transparent $light_blue;
+        border-style: solid;
+        right: 0;
+        bottom: -18px;
+
+      }
+     }
+     button{
+       background: $dark_blue;
+       color: $white;
+     }
+     .form-check-label{
+       color: $dark_blue;
+       font-size: 17px;
+     }
+  }
+  .clearfix{
+    clear: both;
+  }
+}
+.fa-chevron-up,.fa-chevron-down{
+  color: $dark_blue;
+}
+.form-switch .form-check-input {
+  padding: 9px;
+  width: 4em;
+}
+.form-check-input:checked {
+  background-color: $dark_blue !important;
+  border-color: $dark_blue !important;
+}
+//accordion
+.example-accordion {
+  display: block;
+  max-width: 500px;
+}
+
+.example-accordion-item {
+  display: block;
+  border: solid 1px #ccc;
+}
+
+.example-accordion-item-header {
+  display: flex;
+  color: $dark_blue;
+  font-size: 14px;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.example-accordion-item-description {
+  font-size: 0.85em;
+  color: #999;
+}
+
+.example-accordion-item-header,
+.example-accordion-item-body {
+  padding: 16px;
+}
+
+.example-accordion-item-header:hover {
+  cursor: pointer;
+  color: $light_blue;
+  background-color: #eee;
+}
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+  background: transparent !important;
+  border-color: transparent;
+}

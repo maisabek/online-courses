@@ -1,0 +1,38 @@
+@import '../../../shared/scss/index.scss';
+.login{
+  margin: 6% 16%;
+    position: relative;
+    width: 78%;
+    h5{
+      color: $dark_blue;
+      font-family: cursive;
+      text-align: center;
+      font-size: $middle-font-size;
+    }
+    span{
+      color: $white;
+      font-size: $middle-font-size;
+    }
+    .login_form{
+     background: -webkit-linear-gradient(right,$dark_blue,$white);
+    }
+   input[type="submit"]{
+     background: $light_blue;
+     color: $dark_blue;
+   }
+   label{
+     color: $dark_blue;
+     width: 40%;
+   }
+
+  p{
+    color: $dark_blue;
+    a{
+      text-decoration: none;
+      color: $dark_blue;
+      font-size: 17px;
+    }
+  }
+}
+input,select{outline: none;}
+

@@ -1,0 +1,14 @@
+@import '../../../shared/scss/index.scss';
+.all-courses{
+  .del_btn{
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .show_btn{
+    background:$dark_blue;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

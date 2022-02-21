@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../../front/src/app/shared/scss/index.scss';
+body{
+  background: $dark_blue;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field-flex{
+  border:1px solid gainsboro;
+  border-radius: 5px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+   background-color: transparent;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 5px;
+}
+
+

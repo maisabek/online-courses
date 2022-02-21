@@ -1,0 +1,36 @@
+@import '../../shared/scss/index.scss';
+.header{
+  background: url(../../../assets/Images/1.jpg);
+  background-repeat: no-repeat;
+  position: relative;
+  clip-path: polygon(0 0 ,100% 0 , 100% 80% ,0 100%);
+  min-height: 690px;
+  h5{
+    color:$dark_yellow;
+    font-size: $header-font-size;
+    font-family: cursive;
+    span{
+      color: $light_blue;
+    }
+  }
+  .content{
+    margin: 40% auto;
+    p{
+      font-size: $middle-font-size;
+      margin: 4% 0px;
+      line-height: 31px;
+    }
+    button{
+      background: $dark_yellow;
+      color: $dark_blue;
+      border-bottom: 3px solid $light_blue;
+      border-right: 3px solid $light_blue;
+      transition: all .3s ease;
+      &:hover{
+        border: 3px solid $light_blue;
+        color: $light_blue;
+        background: transparent;
+      }
+    }
+  }
+}
