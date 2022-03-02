@@ -10,7 +10,10 @@
           <div class="form-group mt-3">
            <input type="password" name="password" placeholder="Enter Your Password" id="password" class="form-control" formControlName="password">
          </div>
-           <input type="submit" value="login" class="btn mt-4 w-75">
+         <button type="submit" class="btn mt-4 w-75">
+           <span *ngIf="this.isLoading">Login</span>
+           <span *ngIf="!this.isLoading">Loading.....</span>
+         </button>
            <p class="mt-2">You Have Not account ? <a routerLink="/register">Register</a></p>
         </form>
       </div>

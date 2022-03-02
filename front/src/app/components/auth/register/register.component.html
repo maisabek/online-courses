@@ -38,8 +38,11 @@
       <option value="instructor">Instructor</option>
     </select>
   </div>
-
-<input type="submit"  value="Register" class="btn mt-4 w-100">
+  <button type="submit" class="btn mt-4 w-100">
+    <span *ngIf="this.isLoading">Login</span>
+    <span *ngIf="!this.isLoading">Loading.....</span>
+  </button>
+<!-- <input type="submit"  value="Register" class="btn mt-4 w-100"> -->
 <p class="mt-1">You Have an Account ? <a routerLink="/login">Login</a></p>
 </form>
 </div>

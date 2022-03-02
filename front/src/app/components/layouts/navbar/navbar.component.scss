@@ -1,12 +1,15 @@
 @import '../../../shared/scss/index.scss';
 #navbar{
   border-bottom: 1px dotted $dark_yellow;
+  background:$dark_blue;
     li{
       list-style-type: none;
       margin: 3px 2%;
       a{
         color:$dark_yellow;
         cursor: pointer;
+        line-height: 26px;
+        font-size: 17px;
         button{
           background: transparent;
           color: $light_blue;

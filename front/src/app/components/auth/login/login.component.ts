@@ -10,31 +10,31 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router) {
-
+  isLoading:boolean=true;
+  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){
+    if(this.authService.isLogin()){
+      router.navigate(["/home"])
+    }
   }
   buildForm=new FormGroup({
     email:new FormControl(),
     password:new FormControl(),
    });
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   successdata:any
   login(){
+    this.isLoading=false;
    var myFormData=new FormData();
    myFormData.append('email',this.buildForm.value.email);
    myFormData.append('password',this.buildForm.value.password);
-  // console.log("myFormData",myFormData)
     this.authService.login(myFormData).subscribe((res:any)=>{
-      console.log(res);
       this.successdata=res;
       if(this.successdata['status']=="success"){
         this.authService.prepareUserData();
         localStorage.setItem("token",res.data.token);
         localStorage.setItem("name",res.data.name);
         localStorage.setItem("role",res.data.role);
-        
+        this.isLoading=true;
         this.authService.currentUser=res.data.name;
         this.authService.UserRole=res.data.role;
        Swal.fire({
@@ -47,11 +47,13 @@ export class LoginComponent implements OnInit {
       }
       if(this.successdata['status']=="error"){
         console.log("res = ",res);
+        this.isLoading=false;
         Swal.fire({
           title:'opps !!',
           text:"Login details are not correct",
           icon:"error"
         })
+
        }
     })
   }

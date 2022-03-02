@@ -25,20 +25,18 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
   logout(){
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("role");
+       localStorage.clear()
   }
   getToken(){
     localStorage.getItem('token')
   }
   prepareUserData(){
-    if(this.isLogin()){
+    // if(this.isLogin()){
       this.getCurrentUser().subscribe((res)=>{
         console.log("res == ",res)
         // this.currentUser=res.data.name
       })
-    }
+    // }
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses/courses.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import jwt_decode from "jwt-decode";
 @Component({
   selector: 'app-show-courses',
   templateUrl: './show-courses.component.html',
@@ -8,7 +9,19 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ShowCoursesComponent implements OnInit {
   id:any;
-  constructor(private _CoursesService:CoursesService,private activeRoute:ActivatedRoute) { }
+  token:any;
+  decoded:any ;
+  constructor(private _CoursesService:CoursesService,private activeRoute:ActivatedRoute,
+              private router:Router) {
+    // try{
+    // this.token= localStorage.getItem("token")
+    // this.decoded = jwt_decode(this.token);
+    // console.log("decoded = ",this.decoded);
+    // }catch(error){
+    //   localStorage.clear()
+    //  this.router.navigate(['/home'])
+    // }
+   }
 
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe((res:any)=>{

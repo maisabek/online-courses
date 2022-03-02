@@ -28,7 +28,6 @@ export class BuildCourseComponent implements OnInit {
   allcategories: string[] = ["Dr.Ali","Dr.Ahmed"];
 
   @ViewChild('categoryInput') categoryInput:any;
-  // uppy: Uppy = new Uppy({ debug: true, autoProceed: true })
 
   CourseForm:FormGroup;
   constructor(private fb:FormBuilder,private _CoursesService:CoursesService,private router:Router) {

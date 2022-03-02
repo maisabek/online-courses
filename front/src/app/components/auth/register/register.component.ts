@@ -10,8 +10,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  // data:FormGroup;
-  constructor(public authService:AuthService,private router:Router){}
+  isLoading:boolean=true
+  constructor(public authService:AuthService,private router:Router){
+    if(this.authService.isLogin()){
+      router.navigate(["/home"])
+    }
+  }
   ngOnInit(): void {}
   data=new FormGroup({
     name:new FormControl(),
@@ -28,10 +32,11 @@ export class RegisterComponent implements OnInit {
     myFormData.append('password',this.data.value.password)
     myFormData.append('confirmPassword',this.data.value.confirmPassword)
     myFormData.append('role',this.data.value.role)
+    this.isLoading=false;
     this.authService.register(myFormData).subscribe((res)=>{
-      console.log("res = ",res.data);
       this.successdata=res;
       if(this.successdata['status']=="success"){
+        this.isLoading=true
        localStorage.setItem("token",res.data.token);
        localStorage.setItem("name",res.data.name);
        localStorage.setItem("role",res.data.role);

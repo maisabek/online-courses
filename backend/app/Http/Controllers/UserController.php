@@ -7,12 +7,12 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
-//use Auth;
+// use JWTAuth;
 use Illuminate\Support\Facades\Validator;
 class UserController extends Controller{
     protected $redirectTo = RouteServiceProvider::HOME;
     public function __construct(){
-      $this->apiToken=uniqid(base64_encode(Str::random(40)));      
+      $this->apiToken=uniqid(base64_encode(Str::random(60)));
     }
     public function register(Request $request){
      $validator=Validator::make($request->all(),[
@@ -41,14 +41,16 @@ class UserController extends Controller{
       }
     }
 
-   public function doLogin(Request $request){
-    $request->validate([
+    public function doLogin(Request $request){
+     $request->validate([
       'email' => 'required',
       'password' => 'required',
      ]);
-     if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+     $credentials=$request->only('email','password');
+     if (Auth::attempt($credentials)) {
       $user=Auth::user();
       $success['token']=$this->apiToken;
+      //JWTAuth::fromUser($user,$request->all());
       $success['name']=$user->name;
       $success['role']=$user->role;
         return response()->json([
@@ -64,10 +66,14 @@ class UserController extends Controller{
     }
 
     public function getCurrentUser(){
-        $user=auth()->user();
        return response()->json([
-        'data'=>$user
+        'data'=>auth()->user()
        ]);
+    }
+
+    public function logout(){
+       auth()->logout();
+       return response()->json(['message'=>'User successfully logged out']);
     }
 
 

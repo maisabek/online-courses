@@ -21,7 +21,8 @@ import { MaterialModule } from './shared/material/material.module';
 //import { Select2Module } from 'ng2-select2';
 import { FilteredSelectModule } from "filtered-select";
 import { SelectDropDownModule } from 'ngx-select-dropdown';
-import { CoursesListComponent } from './components/courses/courses-list/courses-list.component'
+import { CoursesListComponent } from './components/courses/courses-list/courses-list.component';
+import { AllCoursesComponent } from './components/courses/all-courses/all-courses.component'
 // import { UppyAngularDashboardModule } from '@uppy/angular'
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CoursesListComponent } from './components/courses/courses-list/courses-
     RegisterComponent,
     BuildCourseComponent,
     ShowCoursesComponent,
-    CoursesListComponent
+    CoursesListComponent,
+    AllCoursesComponent
   ],
   imports: [
     BrowserModule,
